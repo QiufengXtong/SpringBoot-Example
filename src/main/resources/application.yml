@@ -1,0 +1,29 @@
+custom:
+  server:
+    port: 8088
+  mysql:
+    ip: 101.43.185.176
+    port: 3306
+    database: example
+    username: example
+    password: password
+
+server:
+  port: ${custom.server.port}
+spring:
+  application:
+    name: Mybatis-Plus-Example
+  datasource:
+    url: jdbc:mysql://${custom.mysql.ip}:${custom.mysql.port}/${custom.mysql.database}?characterEncoding=UTF-8&useUnicode=true&useSSL=false&tinyInt1isBit=false&allowPublicKeyRetrieval=true&serverTimezone=Asia/Shanghai
+    username: ${custom.mysql.username}
+    password: ${custom.mysql.password}
+    driver-class-name: com.mysql.cj.jdbc.Driver
+mybatis-plus:
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+  # 修改 mybatis 的 DefaultEnumTypeHandler
+    default-enum-type-handler: com.baomidou.mybatisplus.core.handlers.MybatisEnumTypeHandler
+pagehelper:
+  propertyName: propertyValue
+  reasonable: false
+  defaultCount: true # 分页插件默认参数支持 default-count 形式，自定义扩展的参数，必须大小写一致
